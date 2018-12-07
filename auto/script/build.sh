@@ -1,5 +1,7 @@
 #!/bin/bash
 
+project_dir=~/dockerBuild/docker-jvm-7/docker--jvm-7
+
 # 停止运行中的app:1.0的容器
 if [ $(docker ps | grep "app" | wc -l) -gt 0 ];then
     c_pid=$(docker ps | grep "app" | awk '{print $1}')
@@ -13,13 +15,13 @@ if [ $(docker ps -a | grep "app" | wc -l) -ge 1 ];then
     docker rm $c_pid
 fi
 
-cd ~/IdeaProjects/docker-jvm-7
+cd $project_dir
 
 mvn clean package
 
-cp ~/IdeaProjects/docker-jvm-7/target/docker-jvm-7-1.0-SNAPSHOT.jar ~/IdeaProjects/docker-jvm-7/auto/build
+cp $project_dir/target/docker-jvm-7-1.0-SNAPSHOT.jar $project_dir/auto/build
 
-cd ~/IdeaProjects/docker-jvm-7/auto/build
+cd $project_dir/auto/build
 
 docker build -t app:1.0 .
 
