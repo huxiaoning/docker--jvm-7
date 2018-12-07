@@ -13,13 +13,13 @@ if [ $(docker ps -a | grep "app" | wc -l) -ge 1 ];then
     docker rm $c_pid
 fi
 
-cd /Users/aidan/IdeaProjects/docker-jvm-7
+cd ~/IdeaProjects/docker-jvm-7
 
 mvn clean package
 
-cp /Users/aidan/IdeaProjects/docker-jvm-7/target/docker-jvm-7-1.0-SNAPSHOT.jar /Users/aidan/IdeaProjects/docker-jvm-7/auto/build
+cp ~/IdeaProjects/docker-jvm-7/target/docker-jvm-7-1.0-SNAPSHOT.jar ~/IdeaProjects/docker-jvm-7/auto/build
 
-cd /Users/aidan/IdeaProjects/docker-jvm-7/auto/build
+cd ~/IdeaProjects/docker-jvm-7/auto/build
 
 docker build -t app:1.0 .
 
